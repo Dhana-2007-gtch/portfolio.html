@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhana sri | Software Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+            scroll-behavior: smooth;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #a855f7 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .skill-bar {
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const App = () => {
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 20);
+                window.addEventListener('scroll', handleScroll);
+                if (window.lucide) window.lucide.createIcons();
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            const profile = {
+                name: "chinimilli.Dhanasri",
+                branding: "ch.Dhana sri",
+                phone: "+9163015xxxxx",
+                email: "dhanasri.ch2015@gmail.com",
+                linkedin: "https://www.linkedin.com/",
+                github: "https://github.com/",
+                whatsapp: "https://wa.me/6301577944",
+                tagline: "Building Digital Experiences with Precision",
+                bio: "I am a motivated BCA student at Swarandhra College of Engineering and Technology. With a strong foundation in Database Administration, Web Development, and an emerging interest in Financial Markets, I am driven to bridge the gap between technology and data-driven decision making.",
+                skills: [
+                    { name: "C / C++ Programming", level: 95 },
+                    { name: "Database Admin (DBMS)", level: 92 },
+                    { name: "Python Development", level: 88 },
+                    { name: "Full Stack Web", level: 82 },
+                    { name: "Stock Market Analysis (Beginner)", level: 65 }
+                ],
+                education: [
+                    {
+                        degree: "Bachelor of Computer Applications (BCA)",
+                        institution: "Swarandhra College of Engineering and Technology",
+                        period: "2024 - 2027",
+                        score: "7.92 CGPA",
+                        type: "Current"
+                    },
+                    {
+                        degree: "Intermediate (Class XII)",
+                        institution: "sri surya Junior College",
+                        period: "2022 - 2024",
+                        score: "75%",
+                        type: "Completed"
+                    }
+                ],
+                projects: [
+                    {
+                        title: "Academic Result Portal",
+                        description: "High-performance web architecture for real-time student data management and result distribution.",
+                        tags: ["React", "Firebase", "Tailwind"],
+                        link: "#",
+                        icon: "layers"
+                    },
+                    {
+                        title: "Inventory Management",
+                        description: "Low-latency tracking system built with C++ utilizing advanced file handling and memory optimization.",
+                        tags: ["C++", "File I/O", "DBMS"],
+                        link: "#",
+                        icon: "database"
+                    }
+                ],
+                stats: [
+                    { label: "BCA CGPA", value: "7.69" },
+                    { label: "Inter %", value: "62%" },
+                    { label: "Stock Market", value: "Active" },
+                    { label: "Tech Stack", value: "6+" }
+                ]
+            };
+
+            return (
+                <div className="min-h-screen">
+                    {/* Navigation */}
+                    <nav className={`fixed top-*0 w-full z-50 transition-all duration-500 ${scrolled ? 'py-4 glass-panel border-b border-white/10' : 'py-8'}`}>
+                        <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
+                            <div className="text-xl font-extrabold tracking-widest uppercase">
+                                {profile.branding}<span className="text-blue-500">.</span>
+                            </div>
+                            <div className="hidden md:flex items-center gap-10 text-sm font-medium text-gray-400">
+                                <a href="#work" className="hover:text-white transition-colors">Projects</a>
+                                <a href="#skills" className="hover:text-white transition-colors">Expertise</a>
+                                <a href="#education" className="hover:text-white transition-colors">Education</a>
+                                <a href={`mailto:${profile.email}`} className="px-5 py-2.5 bg-white text-black rounded-full hover:bg-blue-500 hover:text-white transition-all">Contact Me</a>
+                            </div>
+                        </div>
+                    </nav>
+
+                    {/* Hero Section */}
+                    <section className="relative pt-32 pb-20 px-8 flex items-center min-h-screen overflow-hidden">
+                        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px]" />
+                        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px]" />
+                        
+                        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+                            <div className="relative z-10">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold mb-6 tracking-wider uppercase">
+                                    <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                                    BCA Candidate (2024-2027)
+                                </div>
+                                <h1 className="text-6xl lg:text-8xl font-black tracking-tighter mb-8 leading-[0.9]">
+                                    I'm <span className="gradient-text">{profile.name}</span>
+                                </h1>
+                                <p className="text-xl text-gray-400 max-w-lg mb-10 leading-relaxed">
+                                    {profile.bio}
+                                </p>
+                                <div className="flex flex-wrap gap-4">
+                                    <a href="#work" className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-2xl transition-all shadow-lg shadow-blue-500/25">View My Work</a>
+                                    <a href={profile.whatsapp} target="_blank" className="px-8 py-4 glass-panel hover:bg-white/10 text-white font-bold rounded-2xl transition-all">WhatsApp</a>
+                                </div>
+                            </div>
+
+                            <div className="relative hidden lg:block">
+                                <div className="relative z-10 glass-panel rounded-[40px] p-8 animate-float border-white/20">
+                                    <div className="flex justify-between items-start mb-12">
+                                        <div className="p-4 bg-blue-500 rounded-2xl shadow-xl">
+                                            <i data-lucide="trending-up" className="text-white w-8 h-8"></i>
+                                        </div>
+                                        <div className="text-right">
+                                            <div className="text-gray-400 text-xs uppercase tracking-widest font-bold">Interests</div>
+                                            <div className="text-green-400 font-bold">Tech & Markets</div>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-6" id="skills">
+                                        {profile.skills.slice(0, 3).map(skill => (
+                                            <div key={skill.name}>
+                                                <div className="flex justify-between text-sm mb-2 font-bold">
+                                                    <span>{skill.name}</span>
+                                                    <span className="text-gray-400">{skill.level}%</span>
+                                                </div>
+                                                <div className="skill-bar">
+                                                    <div className="skill-progress" style={{width: `${skill.level}%`}}></div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                        <div className="pt-4 flex items-center gap-3 text-sm font-medium text-gray-300">
+                                            <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                                            <span>Learning Stock Market Fundamentals</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="absolute -top-10 -right-10 w-32 h-32 glass-panel rounded-full flex items-center justify-center animate-bounce">
+                                    <i data-lucide="candlestick-chart" className="text-blue-400"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Stats Section */}
+                    <section className="py-20 px-8 border-y border-white/5 bg-white/[0.01]">
+                        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+                            {profile.stats.map(stat => (
+                                <div key={stat.label} className="text-center group">
+                                    <div className="text-4xl md:text-5xl font-black mb-2 group-hover:text-blue-400 transition-colors tracking-tighter">{stat.value}</div>
+                                    <div className="text-gray-500 text-sm font-bold uppercase tracking-widest">{stat.label}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* Work Section */}
+                    <section id="work" className="py-32 px-8">
+                        <div className="max-w-7xl mx-auto">
+                            <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-16">Selected <span className="text-blue-500">Projects</span></h2>
+                            <div className="grid md:grid-cols-2 gap-8">
+                                {profile.projects.map((project, idx) => (
+                                    <div key={idx} className="glass-panel rounded-3xl p-8 hover:border-blue-500/50 transition-all group relative overflow-hidden">
+                                        <div className="relative z-10">
+                                            <div className="p-3 bg-white/5 rounded-xl inline-block mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                                                <i data-lucide={project.icon}></i>
+                                            </div>
+                                            <h3 className="text-2xl font-bold mb-3 group-hover:text-blue-400 transition-colors">{project.title}</h3>
+                                            <p className="text-gray-400 text-sm leading-relaxed mb-6">{project.description}</p>
+                                            <div className="flex flex-wrap gap-2 mb-8">
+                                                {project.tags.map(tag => (
+                                                    <span key={tag} className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 bg-white/5 rounded-md text-gray-400">{tag}</span>
+                                                ))}
+                                            </div>
+                                            <a href={project.link} className="flex items-center gap-2 text-sm font-bold hover:text-blue-400 transition-all">
+                                                View Source <i data-lucide="github" size="14"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Education Section */}
+                    <section id="education" className="py-32 px-8 border-t border-white/5">
+                        <div className="max-w-7xl mx-auto text-center">
+                            <h2 className="text-4xl font-black mb-16 tracking-tighter">Academic Journey</h2>
+                            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                                {profile.education.map((edu, idx) => (
+                                    <div key={idx} className={`glass-panel rounded-3xl p-10 text-left border-l-4 ${edu.type === 'Current' ? 'border-l-blue-500' : 'border-l-purple-500'}`}>
+                                        <div className={`${edu.type === 'Current' ? 'text-blue-400' : 'text-purple-400'} font-bold mb-2`}>{edu.period}</div>
+                                        <h3 className="text-2xl font-bold mb-1">{edu.degree}</h3>
+                                        <div className="text-gray-300 mb-4">{edu.institution}</div>
+                                        <div className={`inline-block px-4 py-1.5 ${edu.type === 'Current' ? 'bg-blue-500/10 text-blue-400' : 'bg-purple-500/10 text-purple-400'} rounded-full font-bold text-sm`}>
+                                            Score: {edu.score}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Footer */}
+                    <footer className="pt-32 pb-16 px-8 glass-panel border-t border-white/10">
+                        <div className="max-w-7xl mx-auto">
+                            <div className="grid md:grid-cols-2 gap-20 mb-20">
+                                <div>
+                                    <h2 className="text-4xl md:text-6xl font-black mb-10 leading-tight tracking-tighter">
+                                        Let's build <br/> the <span className="text-blue-500">future</span>.
+                                    </h2>
+                                    <div className="flex gap-6">
+                                        <a href={profile.linkedin} target="_blank" className="w-12 h-12 glass-panel rounded-full flex items-center justify-center hover:bg-blue-600 transition-all group">
+                                            <i data-lucide="linkedin" className="w-5 h-5 group-hover:text-white"></i>
+                                        </a>
+                                        <a href={profile.github} target="_blank" className="w-12 h-12 glass-panel rounded-full flex items-center justify-center hover:bg-gray-700 transition-all group">
+                                            <i data-lucide="github" className="w-5 h-5 group-hover:text-white"></i>
+                                        </a>
+                                        <a href={`mailto:${profile.email}`} className="w-12 h-12 glass-panel rounded-full flex items-center justify-center hover:bg-red-600 transition-all group">
+                                            <i data-lucide="mail" className="w-5 h-5 group-hover:text-white"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div className="space-y-8">
+                                    <div className="glass-panel rounded-3xl p-8 hover:border-blue-500/30 transition-all">
+                                        <div className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-4">Direct Contact</div>
+                                        <div className="text-2xl font-bold mb-2">+91 {profile.phone}</div>
+                                        <div className="text-xl text-blue-400">{profile.email}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                                <p className="text-gray-500 text-sm">© 2027 {profile.name} • BCA Student Portfolio</p>
+                                <div className="text-xs font-bold uppercase tracking-widest text-gray-500">
+                                    Building with Precision
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
